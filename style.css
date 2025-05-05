@@ -1,0 +1,240 @@
+/* Основные стили */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333333;
+    margin: 0;
+    padding: 25px;
+    color: #333;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: #333333;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+h1 {
+    text-transform: uppercase;
+    color: #fffefe;
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 35px;
+}
+
+/* Правая колонка с формой */
+.right-aligned {
+    width: 450px;
+    margin-left: auto;
+    margin-right: 0;
+}
+
+/* Блок статусов */
+.status-block {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.color-box {
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+    border-radius: 6px;
+}
+
+.gray-blue { background-color: #6b8cae; }
+.green { background-color: #5cb85c; }
+.pink { background-color: #ff9ff3; }
+.peach { background-color: #ffbe76; }
+.gray { background-color: #95a5a6; }
+
+.status-text p {
+    margin: 5px 0;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.status-text p:first-child {
+    font-weight: bold;
+}
+
+/* Форма бронирования */
+.booking-form {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+input[type="text"] {
+    width: 100%; /* Теперь 100% с учетом box-sizing */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+.options {
+    margin: 20px 0;
+}
+
+.options label {
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+button {
+    background: #ffffff;
+    color: rgb(255, 0, 0);
+    border: none;
+    padding: 16px;
+    width: 100%;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #333;
+    color: white;
+}
+
+/* Карта мест */
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 25px;
+}
+
+.map-section {
+    flex: 2;
+    position: relative;
+    height: 650px;
+    overflow: hidden;
+    border: 2px solid #444;
+    background: #444;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.map-section::-webkit-scrollbar {
+    display: none;
+}
+
+.map-container {
+    transform-origin: top left;
+    width: 1364.7px;  /*1364.7px*/
+    height: 784.4px; /*784.4px*/
+    background-image: url('./src/posadka.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0px 0px; 
+}
+
+/* Стили мест */
+.place {
+    position: absolute;
+    width: 20px;
+    height: 16px;
+    background: #006837;
+    border: 1px solid #282929;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.place:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.place.box_seat {
+    background: #242c78;
+    border-color: #000;
+}
+
+.place.open_space {
+    background: #4CAF50;
+}
+
+.place.booked {
+    background: #d9534f;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.place.selected {
+    opacity: 1;
+    border: 2px solid gold;
+    box-shadow: 0 0 8px rgba(255,215,0,0.7);
+}
+
+/* Список выбранных мест */
+.selected-places-info {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+#selectedPlacesCount {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#selectedPlacesList {
+    margin-top: 12px;
+}
+
+#selectedPlacesList div {
+    padding: 8px;
+    background: #e9e9e9;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+/* Валидация и подсказки */
+input[name="link"]:valid {
+    border: 2px solid #5cb85c;
+}
+
+input[name="link"]:invalid {
+    border: 2px solid #d9534f;
+}
+
+.hint {
+    display: block;
+    color: #666;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* Кнопка VK */
+.vk-button {
+    display: block;
+    margin: 25px auto;
+    padding: 14px 28px;
+    background-color: #4a76a8;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 320px;
+    font-size: 16px;
+}
