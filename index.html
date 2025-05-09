@@ -5,22 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бронирование места | Tattoo Fest 2025</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Валидация формы */
-        input[name="link"]:valid {
-            border-color: #5cb85c;
-        }
-        input[name="link"]:invalid:not(:focus) {
-            border-color: #d9534f;
-        }
-        .hint {
-            display: block;
-            color: #666;
-            font-size: 12px;
-            margin-top: 5px;
-            line-height: 1.4;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
@@ -30,8 +14,10 @@
             <!-- Секция с картой -->
             <div class="map-section">
                 <div class="map-container" id="map">
-                    <!-- SVG карта будет вставлена через map-svg.js -->
-                    <div class="html-places"></div> <!-- Для HTML-элементов мест -->
+                    <!-- Основное изображение карты -->
+                    <img src="images/map.jpg" alt="Карта фестиваля" id="map-image">
+                    <!-- Контейнер для мест -->
+                    <div class="html-places"></div>
                 </div>
             </div>
 
@@ -91,12 +77,13 @@
                                placeholder="ИМЯ как в заявке" 
                                required
                                minlength="2"
-                               maxlength="50">
+                               maxlength="50"
+                               pattern="[А-Яа-яЁёA-Za-z\s]+">
                                
                         <input type="text" 
                                name="link" 
                                placeholder="ССЫЛКА НА СТРАНИЦУ VK" 
-                               pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
+                               pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.\-]+$" 
                                title="Пример: vk.com/username или https://vk.com/id12345"
                                required>
                         <small class="hint">Пример: vk.com/username или https://vk.com/id12345</small>
@@ -123,9 +110,9 @@
         </div>
     </div>
 
-    <!-- Подключаем скрипты -->
-    <script type="module" src="js/map-svg.js"></script>      <!-- SVG карта -->
-    <script type="module" src="js/places-data.js"></script>  <!-- Данные мест -->
-    <script type="module" src="js/app.js"></script>          <!-- Основная логика -->
+    <!-- Скрипты -->
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/places-data.js"></script>
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -38,7 +38,7 @@ function sendToVKGroup(formData) {
         return false;
     }
 }
-*/
+
 
             /* 
             if (sendToVKGroup(formData)) {
@@ -58,4 +58,4 @@ function sendToVKGroup(formData) {
                 
                 alert(`Заявка на ${formData.places.length} мест отправлена! Проверьте открывшееся окно с диалогом группы.`);
             }
-            
+            */
