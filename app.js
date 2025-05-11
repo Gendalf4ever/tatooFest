@@ -1,4 +1,5 @@
-
+// Функция отправки в группу VK - ЗАКОММЕНТИРОВАТЬ ВСЮ ФУНКЦИЮ
+/*
 function sendToVKGroup(formData) {
     try {
         // Проверка данных
@@ -38,9 +39,10 @@ function sendToVKGroup(formData) {
         return false;
     }
 }
+*/
 
-
-            /* 
+// И в обработчике формы ЗАМЕНИТЬ этот блок:
+            /* ЗАКОММЕНТИРОВАТЬ оригинальный блок
             if (sendToVKGroup(formData)) {
                 // Помечаем места как забронированные
                 selectedPlaces.forEach(placeId => {
@@ -59,3 +61,23 @@ function sendToVKGroup(formData) {
                 alert(`Заявка на ${formData.places.length} мест отправлена! Проверьте открывшееся окно с диалогом группы.`);
             }
             */
+            
+            // ДОБАВИТЬ ВМЕСТО НЕГО:
+            // Временная заглушка без отправки в VK
+            console.log("Тестовые данные бронирования:", formData);
+            
+            // Помечаем места как забронированные
+            selectedPlaces.forEach(placeId => {
+                const placeEl = document.querySelector(`.place[data-id="${placeId}"]`);
+                if (placeEl) {
+                    placeEl.classList.remove('selected');
+                    placeEl.classList.add('booked');
+                }
+            });
+
+            // Сбрасываем форму
+            selectedPlaces.clear();
+            updateSelectedPlacesUI();
+            form.reset();
+            
+            alert(`Тестовая заявка на ${formData.places.length} мест сохранена! (отправка в VK отключена)`);

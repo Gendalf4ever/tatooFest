@@ -1,321 +1,240 @@
-/* ===== Базовые сбросы и настройки ===== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html, body {
-    height: 100%;
-}
-
+/* Основные стили */
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
+    font-family: Arial, sans-serif;
+    background-color: #333333;
+    margin: 0;
+    padding: 25px;
     color: #333;
-    background-color: #f5f5f5;
-    -webkit-font-smoothing: antialiased;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* ===== Основные стили контейнеров ===== */
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 20px;
+    background-color: #333333;
+    padding: 30px;
+    border-radius: 12px;
 }
 
-h1, h2 {
-    color: #222;
+h1 {
+    text-transform: uppercase;
+    color: #fffefe;
     text-align: center;
-    margin-bottom: 20px;
+    font-size: 28px;
+    margin-bottom: 35px;
 }
 
-.content-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-top: 30px;
-    align-items: flex-start;
-}
-
-/* ===== Стили карты (исправленные) ===== */
-.map-section {
-    flex: 1;
-    min-width: 300px;
-    position: relative;
-    height: 0;
-    padding-bottom: 57.14%; /* Соотношение 800/1400 */
-    background-color: #fff;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-}
-
-.map-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-#map {
-    flex-grow: 1;
-    position: relative;
-}
-
-#map-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-.html-places {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-}
-
-/* ===== Стили мест ===== */
-.place {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    transform-origin: center;
-    pointer-events: auto;
-    cursor: pointer;
-    margin-left: -10px;
-    margin-top: -10px;
-    transition: all 0.2s ease;
-    z-index: 10;
-}
-
-.place:hover {
-    transform: scale(1.2);
-}
-
-.place.open_space {
-    background-color: rgba(46, 204, 113, 0.7);
-    border: 2px solid #2ecc71;
-}
-
-.place.box_seat {
-    background-color: rgba(52, 152, 219, 0.7);
-    border: 2px solid #3498db;
-}
-
-.place.booked {
-    background-color: rgba(149, 165, 166, 0.7);
-    border: 2px solid #95a5a6;
-    cursor: not-allowed;
-}
-
-.place.selected {
-    background-color: rgba(155, 89, 182, 0.7);
-    border: 2px solid #9b59b6;
-    transform: scale(1.3);
-    z-index: 20;
-}
-
-/* ===== Блок бронирования ===== */
+/* Правая колонка с формой */
 .right-aligned {
-    flex: 0 0 300px;
-    position: sticky;
-    top: 20px;
+    width: 450px;
+    margin-left: auto;
+    margin-right: 0;
 }
 
-.booking-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-/* ===== Легенда мест ===== */
+/* Блок статусов */
 .status-block {
-    background-color: #fff;
-    padding: 15px;
+    background: #f9f9f9;
+    padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .status-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .color-box {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    margin-right: 10px;
-    border: 1px solid rgba(0,0,0,0.1);
+    width: 36px;
+    height: 36px;
+    margin-right: 20px;
+    border-radius: 6px;
 }
 
-.gray-blue { background-color: #3498db; }
-.green { background-color: #2ecc71; }
-.pink { background-color: #fd79a8; }
-.peach { background-color: #fab1a0; }
+.gray-blue { background-color: #6b8cae; }
+.green { background-color: #5cb85c; }
+.pink { background-color: #ff9ff3; }
+.peach { background-color: #ffbe76; }
 .gray { background-color: #95a5a6; }
 
 .status-text p {
-    margin: 0;
-    font-size: 14px;
+    margin: 5px 0;
+    font-size: 16px;
     line-height: 1.4;
 }
 
-/* ===== Форма бронирования ===== */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.status-text p:first-child {
+    font-weight: bold;
+}
+
+/* Форма бронирования */
+.booking-form {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
 }
 
 input[type="text"] {
-    padding: 12px;
+    width: 100%; /* Теперь 100% с учетом box-sizing */
+    box-sizing: border-box; /* Учитываем padding и border в ширине */
+    padding: 14px;
+    margin: 12px 0;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
-    width: 100%;
-    box-sizing: border-box;
-    transition: all 0.3s ease;
 }
 
 .options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    margin: 20px 0;
 }
 
-.radio-label {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
-    padding: 5px;
-    border-radius: 4px;
-    transition: background 0.2s;
-}
-
-.radio-label:hover {
-    background: rgba(0,0,0,0.05);
-}
-
-.radio-label input {
-    margin: 0;
-}
-
-.submit-btn {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 4px;
+.options label {
     font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: bold;
+    margin-right: 20px;
+}
+
+button {
+    background: #ffffff;
+    color: rgb(255, 0, 0);
+    border: none;
+    padding: 16px;
+    width: 100%;
+    font-size: 18px;
     text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 6px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
 }
 
-.submit-btn:hover {
-    background-color: #c0392b;
+button:hover {
+    background: #333;
+    color: white;
 }
 
-/* ===== Валидация формы ===== */
-input[name="link"]:valid,
-input[name="name"]:valid {
-    border-color: #2ecc71;
+/* Карта мест */
+.content-wrapper {
+    display: flex;
+    gap: 40px;
+    margin-top: 25px;
 }
 
-input[name="link"]:invalid:not(:focus):not(:placeholder-shown),
-input[name="name"]:invalid:not(:focus):not(:placeholder-shown) {
-    border-color: #e74c3c;
+.map-section {
+    flex: 2;
+    position: relative;
+    height: 650px;
+    overflow: hidden;
+    border: 2px solid #444;
+    background: #444;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-input:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+.map-section::-webkit-scrollbar {
+    display: none;
+}
+
+.map-container {
+    transform-origin: top left;
+    width: 1364.7px;  /*1364.7px*/
+    height: 784.4px; /*784.4px*/
+    background-image: url('./src/posadka.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 0px 0px; 
+}
+
+/* Стили мест */
+.place {
+    position: absolute;
+    width: 20px;
+    height: 16px;
+    background: #006837;
+    border: 1px solid #282929;
+    opacity: 0.6;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.place:hover {
+    opacity: 0.9;
+    transform: scale(1.1);
+    z-index: 10;
+}
+
+.place.box_seat {
+    background: #242c78;
+    border-color: #000;
+}
+
+.place.open_space {
+    background: #4CAF50;
+}
+
+.place.booked {
+    background: #d9534f;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.place.selected {
+    opacity: 1;
+    border: 2px solid gold;
+    box-shadow: 0 0 8px rgba(255,215,0,0.7);
+}
+
+/* Список выбранных мест */
+.selected-places-info {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+#selectedPlacesCount {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#selectedPlacesList {
+    margin-top: 12px;
+}
+
+#selectedPlacesList div {
+    padding: 8px;
+    background: #e9e9e9;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+/* Валидация и подсказки */
+input[name="link"]:valid {
+    border: 2px solid #5cb85c;
+}
+
+input[name="link"]:invalid {
+    border: 2px solid #d9534f;
 }
 
 .hint {
     display: block;
     color: #666;
-    font-size: 12px;
-    margin-top: 5px;
-    line-height: 1.4;
+    font-size: 13px;
+    margin-top: 8px;
 }
 
-.error-message {
-    color: #e74c3c;
-    font-size: 12px;
-    margin-top: 5px;
-    display: none;
-}
-
-input:invalid:not(:focus):not(:placeholder-shown) + .error-message {
+/* Кнопка VK */
+.vk-button {
     display: block;
-}
-
-/* ===== Выбранные места ===== */
-.selected-places-info {
-    margin-bottom: 20px;
-}
-
-.selected-places-list {
-    max-height: 150px;
-    overflow-y: auto;
-    border: 1px solid #eee;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 10px;
-    background: #f9f9f9;
-}
-
-.selected-place {
-    padding: 5px;
-    border-bottom: 1px solid #eee;
-    font-size: 14px;
-}
-
-.selected-place:last-child {
-    border-bottom: none;
-}
-
-/* ===== Адаптивность ===== */
-@media (max-width: 768px) {
-    .content-wrapper {
-        flex-direction: column;
-    }
-    
-    .right-aligned {
-        flex: 1 1 auto;
-        position: static;
-        width: 100%;
-    }
-    
-    .map-section {
-        padding-bottom: 75%;
-    }
-    
-    .booking-form {
-        margin-top: 0;
-    }
+    margin: 25px auto;
+    padding: 14px 28px;
+    background-color: #4a76a8;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    max-width: 320px;
+    font-size: 16px;
 }
