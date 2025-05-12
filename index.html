@@ -5,88 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Бронирование места на Tattoo Fest</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preload" href="src/posadka.png" as="image">
-    <link rel="preload" href="js/places.js" as="script">
-    <link rel="preload" href="js/app.js" as="script">
+    <link rel="preload" href="src/design.png" as="image">
     <style>
-        /* Валидация формы */
-        input[name="link"]:valid {
-            border: 2px solid #5cb85c;
-        }
-        input[name="link"]:invalid {
-            border: 2px solid #d9534f;
-        }
-        .hint {
-            display: block;
-            color: #666;
-            font-size: 13px;
-            margin-top: 8px;
+        /* Дополнительные стили для улучшенной версии */
+        .form-group {
+            margin-bottom: 15px;
         }
         
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        fieldset.options {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
         }
-        .booking-form {
-            animation: fadeIn 0.5s ease-out;
+        
+        fieldset.options legend {
+            padding: 0 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .right-aligned {
+                width: 100%;
+                margin: 30px 0 0 0;
+            }
+            
+            .map-section {
+                height: 600px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .map-section {
+                height: 450px;
+            }
+            
+            .status-block, .booking-form {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="page-header">
-            <h1>БРОНИРУЙ ИДЕАЛЬНОЕ МЕСТО ДЛЯ СЕБЯ!</h1>
-        </header>
+        <h1>БРОНИРУЙ ИДЕАЛЬНОЕ МЕСТО ДЛЯ СЕБЯ!</h1>
 
-        <main class="content-wrapper">
+        <div class="content-wrapper">
             <!-- Увеличенная секция карты -->
-            <section class="map-section" aria-label="Карта расположения мест">
+            <div class="map-section">
                 <div class="map-container" id="map">
-                    <svg class="map-svg" viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid meet">
-                        <!-- Фон будет загружен через CSS background-image -->
+                    <svg class="map-svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid meet">
+                        <!-- Фон загружается через CSS -->
                     </svg>
                 </div>
-                <div class="map-controls">
-                    <button class="zoom-btn" id="zoomIn">+</button>
-                    <button class="zoom-btn" id="zoomOut">-</button>
-                </div>
-            </section>
+            </div>
 
-            <!-- Правая колонка -->
-            <aside class="right-aligned">
+            <div class="right-aligned">
                 <div class="status-block">
-                    <h2 class="visually-hidden">Статусы мест</h2>
                     <div class="status-item">
-                        <div class="color-box gray-blue" aria-hidden="true"></div>
+                        <div class="color-box gray-blue"></div>
                         <div class="status-text">
                             <p>свободные места</p>
                             <p>*боксы</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box green" aria-hidden="true"></div>
+                        <div class="color-box green"></div>
                         <div class="status-text">
                             <p>свободные места</p>
                             <p>*Open Space</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box pink" aria-hidden="true"></div>
+                        <div class="color-box pink"></div>
                         <div class="status-text">
                             <p>место свободно</p>
                             <p>*только 24.05</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box peach" aria-hidden="true"></div>
+                        <div class="color-box peach"></div>
                         <div class="status-text">
                             <p>место свободно</p>
                             <p>*только 25.05</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box gray" aria-hidden="true"></div>
+                        <div class="color-box gray"></div>
                         <div class="status-text">
                             <p>место забронировано</p>
                             <p>*полностью</p>
@@ -94,28 +108,23 @@
                     </div>
                 </div>
 
-                <section class="booking-form" aria-labelledby="booking-heading">
-                    <h2 id="booking-heading">ДАННЫЕ ДЛЯ БРОНИРОВАНИЯ МЕСТА</h2>
+                <div class="booking-form">
+                    <h2>ДАННЫЕ ДЛЯ БРОНИРОВАНИЯ МЕСТА</h2>
                     <div class="selected-places-info">
-                        <p>Выбранные места: <span id="selectedPlacesCount" aria-live="polite">0</span></p>
-                        <div id="selectedPlacesList" aria-live="polite"></div>
+                        <p>Выбранные места: <span id="selectedPlacesCount">0</span></p>
+                        <div id="selectedPlacesList"></div>
                     </div>
-                    <form id="bookingForm" novalidate>
+                    <form id="bookingForm">
                         <div class="form-group">
-                            <input type="text" 
-                                   name="name" 
-                                   placeholder="ИМЯ как в заявке" 
-                                   required
-                                   aria-required="true">
+                            <input type="text" name="name" placeholder="ИМЯ как в заявке" required>
                         </div>
                         <div class="form-group">
-                            <input type="url" 
+                            <input type="text" 
                                    name="link" 
                                    placeholder="ССЫЛКА НА СТРАНИЦУ VK" 
                                    pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
                                    title="Пример: vk.com/username или https://vk.com/id12345"
-                                   required
-                                   aria-required="true">
+                                   required>
                             <small class="hint">Формат: vk.com/username или https://vk.com/id12345</small>
                         </div>
                         
@@ -128,13 +137,13 @@
                         
                         <button type="submit" class="submit-btn">ЗАБРОНИРОВАТЬ</button>
                     </form>
-                </section>
-            </aside>
-        </main>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Скрипты -->
-    <script src="js/places.js" defer></script>
-    <script src="js/app.js" defer></script>
+    <!-- Подключаем скрипты -->
+    <script src="js/places.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

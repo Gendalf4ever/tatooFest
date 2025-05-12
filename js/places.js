@@ -175,7 +175,6 @@ const places = [
 { x: 109, y: 291.7, rotate: 88, class: 'open_space' },
 { x: 109, y: 310, rotate: 88, class: 'open_space' },
 
-
 // Box_seat (cls-3)
 { x: 922.2, y: 462.4, rotate: 179.8, class: 'box_seat' },
 { x: 940.5, y: 462.4, rotate: 179.8, class: 'box_seat' },
