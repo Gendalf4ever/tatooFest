@@ -3,69 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Бронирование места</title>
+    <title>Бронирование места на Tattoo Fest</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="src/posadka.png" as="image">
+    <link rel="preload" href="js/places.js" as="script">
+    <link rel="preload" href="js/app.js" as="script">
     <style>
-        /* Добавляем стили для валидации */
+        /* Валидация формы */
         input[name="link"]:valid {
-            border-color: #5cb85c;
+            border: 2px solid #5cb85c;
         }
         input[name="link"]:invalid {
-            border-color: #d9534f;
+            border: 2px solid #d9534f;
         }
         .hint {
             display: block;
             color: #666;
-            font-size: 12px;
-            margin-top: 5px;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .booking-form {
+            animation: fadeIn 0.5s ease-out;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>БРОНИРУЙ ИДЕАЛЬНОЕ МЕСТО ДЛЯ СЕБЯ!</h1>
+        <header class="page-header">
+            <h1>БРОНИРУЙ ИДЕАЛЬНОЕ МЕСТО ДЛЯ СЕБЯ!</h1>
+        </header>
 
-        <div class="content-wrapper">
-            <div class="map-section">
+        <main class="content-wrapper">
+            <!-- Увеличенная секция карты -->
+            <section class="map-section" aria-label="Карта расположения мест">
                 <div class="map-container" id="map">
-                    <svg width="100%" height="100%" viewBox="0 0 1364.7 784.4">
-                        <!-- Фон карты -->
+                    <svg class="map-svg" viewBox="0 0 1800 1200" preserveAspectRatio="xMidYMid meet">
+                        <!-- Фон будет загружен через CSS background-image -->
                     </svg>
                 </div>
-            </div>
+                <div class="map-controls">
+                    <button class="zoom-btn" id="zoomIn">+</button>
+                    <button class="zoom-btn" id="zoomOut">-</button>
+                </div>
+            </section>
 
-            <div class="right-aligned">
+            <!-- Правая колонка -->
+            <aside class="right-aligned">
                 <div class="status-block">
+                    <h2 class="visually-hidden">Статусы мест</h2>
                     <div class="status-item">
-                        <div class="color-box gray-blue"></div>
+                        <div class="color-box gray-blue" aria-hidden="true"></div>
                         <div class="status-text">
                             <p>свободные места</p>
                             <p>*боксы</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box green"></div>
+                        <div class="color-box green" aria-hidden="true"></div>
                         <div class="status-text">
                             <p>свободные места</p>
                             <p>*Open Space</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box pink"></div>
+                        <div class="color-box pink" aria-hidden="true"></div>
                         <div class="status-text">
                             <p>место свободно</p>
                             <p>*только 24.05</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box peach"></div>
+                        <div class="color-box peach" aria-hidden="true"></div>
                         <div class="status-text">
                             <p>место свободно</p>
                             <p>*только 25.05</p>
                         </div>
                     </div>
                     <div class="status-item">
-                        <div class="color-box gray"></div>
+                        <div class="color-box gray" aria-hidden="true"></div>
                         <div class="status-text">
                             <p>место забронировано</p>
                             <p>*полностью</p>
@@ -73,37 +94,47 @@
                     </div>
                 </div>
 
-                <div class="booking-form">
-                    <h2>ДАННЫЕ ДЛЯ БРОНИРОВАНИЯ МЕСТА</h2>
+                <section class="booking-form" aria-labelledby="booking-heading">
+                    <h2 id="booking-heading">ДАННЫЕ ДЛЯ БРОНИРОВАНИЯ МЕСТА</h2>
                     <div class="selected-places-info">
-                        <p>Выбранные места: <span id="selectedPlacesCount">0</span></p>
-                        <div id="selectedPlacesList"></div>
+                        <p>Выбранные места: <span id="selectedPlacesCount" aria-live="polite">0</span></p>
+                        <div id="selectedPlacesList" aria-live="polite"></div>
                     </div>
-                    <form id="bookingForm">
-                        <input type="text" name="name" placeholder="ИМЯ как в заявке" required>
-                        <input type="text" 
-                               name="link" 
-                               placeholder="ССЫЛКА НА СТРАНИЦУ VK" 
-                               pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
-                               title="Пример: vk.com/username или https://vk.com/id12345"
-                               required>
-                        <small class="hint">Формат: vk.com/username или https://vk.com/id12345</small>
+                    <form id="bookingForm" novalidate>
+                        <div class="form-group">
+                            <input type="text" 
+                                   name="name" 
+                                   placeholder="ИМЯ как в заявке" 
+                                   required
+                                   aria-required="true">
+                        </div>
+                        <div class="form-group">
+                            <input type="url" 
+                                   name="link" 
+                                   placeholder="ССЫЛКА НА СТРАНИЦУ VK" 
+                                   pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
+                                   title="Пример: vk.com/username или https://vk.com/id12345"
+                                   required
+                                   aria-required="true">
+                            <small class="hint">Формат: vk.com/username или https://vk.com/id12345</small>
+                        </div>
                         
-                        <div class="options">
+                        <fieldset class="options">
+                            <legend>Выберите даты:</legend>
                             <label><input type="radio" name="date" value="24.05" checked> ТОЛЬКО 24.05</label>
                             <label><input type="radio" name="date" value="25.05"> ТОЛЬКО 25.05</label>
                             <label><input type="radio" name="date" value="both"> ОБА ДНЯ</label>
-                        </div>
+                        </fieldset>
                         
-                        <button type="submit">ЗАБРОНИРОВАТЬ</button>
+                        <button type="submit" class="submit-btn">ЗАБРОНИРОВАТЬ</button>
                     </form>
-                </div>
-            </div>
-        </div>
+                </section>
+            </aside>
+        </main>
     </div>
 
-    <!-- Подключаем скрипты в правильном порядке -->
-    <script src="js/places.js"></script>
-    <script src="js/app.js"></script>
+    <!-- Скрипты -->
+    <script src="js/places.js" defer></script>
+    <script src="js/app.js" defer></script>
 </body>
 </html>

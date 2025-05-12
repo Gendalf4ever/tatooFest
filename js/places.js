@@ -1,49 +1,63 @@
 // places.js
-const places = [        
-{ x: 1051.6, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1081.6, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1110.9, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1111.5, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1081.6, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1050.4, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1142, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1173.2, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1142, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1173.2, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1200.6, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1200.6, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 6.3, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 35.6, rotate: 179.8, class: 'open_space' },
-{ x: 1101.1, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 1161.6, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 1184.8, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 1209.2, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 1076.7, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 1051.6, y: 64.9, rotate: 179.8, class: 'open_space' },
-{ x: 955.2, y: 133.3, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 133.3, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 155.2, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 174.8, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 194.3, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 174.8, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 194.3, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 62.4, rotate: 179.8, class: 'open_space' },
+const places = [   
+    //open_space места  
+//open space правое крыло 
+//первый ряд
+{ x: 1051.6, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1081.6, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1110.9, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1142, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1173.2, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1200.6, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1256.8, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1227.5, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1284.3, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1311.8, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1341.1, y: 28, rotate: 179.8, class: 'open_space' },
+
+//второй ряд
+{ x: 1111.5, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1081.6, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1050.4, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1142, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1173.2, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1200.6, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1227.5, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1256.8, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1284.3, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1311.8, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1341.1, y: 47, rotate: 179.8, class: 'open_space' },
+//третий ряд
+{ x: 1101.1, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1161.6, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1184.8, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1209.2, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1076.7, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1051.6, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1341.1, y: 66, rotate: 179.8, class: 'open_space' },
+//четвертый ряд
 { x: 1256.8, y: 89.3, rotate: 179.8, class: 'open_space' },
 { x: 1228.7, y: 89.3, rotate: 179.8, class: 'open_space' },
 { x: 1284.3, y: 89.3, rotate: 179.8, class: 'open_space' },
 { x: 1311.8, y: 89.3, rotate: 179.8, class: 'open_space' },
 { x: 1341.1, y: 89.3, rotate: 179.8, class: 'open_space' },
-{ x: 996.7, y: 104.6, rotate: 179.8, class: 'open_space' },
-{ x: 1024.2, y: 104.6, rotate: 179.8, class: 'open_space' },
-{ x: 1051.6, y: 104.6, rotate: 179.8, class: 'open_space' },
+//пятый ряд
+{ x: 996.7, y: 115, rotate: 179.8, class: 'open_space' },
+{ x: 1024.2, y: 115, rotate: 179.8, class: 'open_space' },
+{ x: 1051.6, y: 115, rotate: 179.8, class: 'open_space' },
+/*
+
+{ x: 955.2, y: 133.3, rotate: 179.8, class: 'open_space' },
+{ x: 982.7, y: 133.3, rotate: 179.8, class: 'open_space' },
+
+{ x: 954, y: 155.2, rotate: 179.8, class: 'open_space' },
+{ x: 954, y: 174.8, rotate: 179.8, class: 'open_space' },
+{ x: 954, y: 194.3, rotate: 179.8, class: 'open_space' },
+{ x: 982.7, y: 174.8, rotate: 179.8, class: 'open_space' },
+{ x: 982.7, y: 194.3, rotate: 179.8, class: 'open_space' },
+
+
+
 { x: 1109.7, y: 147.9, rotate: 179.8, class: 'open_space' },
 { x: 1082.2, y: 147.9, rotate: 179.8, class: 'open_space' },
 { x: 1054.1, y: 147.9, rotate: 179.8, class: 'open_space' },
@@ -149,10 +163,8 @@ const places = [
 { x: 25.5, y: 310, rotate: 88, class: 'open_space' },
 { x: 24.9, y: 291.7, rotate: 88, class: 'open_space' },
 { x: 24.4, y: 273.4, rotate: 88, class: 'open_space' },
-
-
-// Премиум места (cls-3)
-
+*/
+// Box_seat (cls-3)
 { x: 922.2, y: 462.4, rotate: 179.8, class: 'box_seat' },
 { x: 940.5, y: 462.4, rotate: 179.8, class: 'box_seat' },
 { x: 958.8, y: 462.4, rotate: 179.8, class: 'box_seat' },
@@ -225,7 +237,6 @@ const places = [
 { x: 734.9, y: 406.5, rotate: 67.1, class: 'box_seat' },
 { x: 727.8, y: 389.6, rotate: 67.1, class: 'box_seat' },
 { x: 720.8, y: 372.7, rotate: 67.1, class: 'box_seat' },
-
 { x: 725.6, y: 112.3, rotate: 158.8, class: 'box_seat' },
 { x: 742.7, y: 105.7, rotate: 158.8, class: 'box_seat' },
 { x: 759.8, y: 99.1, rotate: 158.8, class: 'box_seat' },

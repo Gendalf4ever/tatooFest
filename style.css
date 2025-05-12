@@ -122,7 +122,7 @@ button:hover {
 .map-section {
     flex: 2;
     position: relative;
-    height: 650px;
+    height: 750px;
     overflow: hidden;
     border: 2px solid #444;
     background: #444;
