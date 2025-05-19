@@ -75,8 +75,8 @@ h1 {
 }
 
 input[type="text"] {
-    width: 100%; /* Теперь 100% с учетом box-sizing */
-    box-sizing: border-box; /* Учитываем padding и border в ширине */
+    width: 100%; 
+    box-sizing: border-box; 
     padding: 14px;
     margin: 12px 0;
     border: 1px solid #ddd;
@@ -161,7 +161,11 @@ button:hover {
     transform: scale(1.1);
     z-index: 10;
 }
-
+/* Стили для box-seat */
+[class*="Б"] {
+    background: #242c78;
+    border-color: #000;
+}
 .place.box_seat {
     background: #242c78;
     border-color: #000;

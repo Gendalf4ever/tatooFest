@@ -161,8 +161,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const mapSection = document.querySelector('.map-section');
         if (mapSection) {
             const scale = Math.min(
-                mapSection.clientWidth / 1364.7,
-                mapSection.clientHeight / 784.4,
+                mapSection.clientWidth / 1364.7,  //!
+                mapSection.clientHeight / 784.4,  //!
                 1 // Максимальный масштаб 100%
             );
             map.style.transform = `scale(${scale})`;
@@ -184,55 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
     init();
 });
 
-// Отправка в VK (можно вынести в отдельный файл vk.js)
-async function sendBookingToVK(bookingData) {
-    return new Promise((resolve, reject) => {
-        try {
-            const message = `Новая бронь на Tattoo Fest!\n\n` +
-                          `👤 Имя: ${bookingData.name}\n` +
-                          `🔗 Профиль: ${normalizeVkLink(bookingData.link)}\n` +
-                          `📅 Дата: ${getDateText(bookingData.date)}\n` +
-                          `📍 Места: ${bookingData.places.join(', ')}\n\n` +
-                          `🕒 ${new Date().toLocaleString()}`;
 
-            const vkUrl = `https://vk.com/write-tattoo_fest_2025?text=${encodeURIComponent(message)}`;
-            
-            const width = 600;
-            const height = 700;
-            const left = (screen.width - width) / 2;
-            const top = (screen.height - height) / 2;
-            
-            const vkWindow = window.open(vkUrl, 'vk_booking', 
-                `width=${width},height=${height},left=${left},top=${top}`);
-            
-            if (!vkWindow) {
-                const shouldProceed = confirm(
-                    'Разрешите всплывающие окна или нажмите OK для ручной отправки'
-                );
-                
-                if (shouldProceed) {
-                    window.location.href = vkUrl;
-                    resolve();
-                } else {
-                    reject(new Error('Отправка отменена'));
-                }
-            } else {
-                const checkInterval = setInterval(() => {
-                    if (vkWindow.closed) {
-                        clearInterval(checkInterval);
-                        resolve();
-                    }
-                }, 500);
-            }
-        } catch (error) {
-            reject(error);
-        }
-    });
-}
-
-function normalizeVkLink(link) {
-    return link.startsWith('http') ? link : `https://${link}`;
-}
 
 function getDateText(date) {
     const dates = {
