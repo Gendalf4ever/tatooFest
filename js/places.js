@@ -2,63 +2,68 @@ const places = [
     //open_space места  
 //open space правое крыло 
 //первый ряд
-{ x: 1051.6, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1081.6, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1110.9, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1142, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1173.2, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1200.6, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 28, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1065, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1090, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1115, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1140, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1165, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1190, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1215, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1240, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1265, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1290, y: 28, rotate: 179.8, class: 'open_space' },
+{ x: 1315, y: 28, rotate: 179.8, class: 'open_space' },
 //второй ряд
-{ x: 1111.5, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1081.6, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1050.4, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1142, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1173.2, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1200.6, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 47, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1065, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1090, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1115, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1140, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1165, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1190, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1215, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1240, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1265, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1290, y: 47, rotate: 179.8, class: 'open_space' },
+{ x: 1315, y: 47, rotate: 179.8, class: 'open_space' },
 //третий ряд
-{ x: 1101.1, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1161.6, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1184.8, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1209.2, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1076.7, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1051.6, y: 66, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 66, rotate: 179.8, class: 'open_space' },
+{ x: 1065, y: 66, rotate: 179.8, class: 'open_space' }, //1
+{ x: 1090, y: 66, rotate: 179.8, class: 'open_space' }, //2
+{ x: 1115, y: 66, rotate: 179.8, class: 'open_space' }, //3
+{ x: 1160, y: 66, rotate: 179.8, class: 'open_space' }, //4
+{ x: 1184.8, y: 66, rotate: 179.8, class: 'open_space' }, //5
+{ x: 1209.2, y: 66, rotate: 179.8, class: 'open_space' },//6
+
+
+{ x: 1315, y: 66, rotate: 179.8, class: 'open_space' }, //x 1341.1
 //четвертый ряд
-{ x: 1256.8, y: 89.3, rotate: 179.8, class: 'open_space' },
-{ x: 1228.7, y: 89.3, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 89.3, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 89.3, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 89.3, rotate: 179.8, class: 'open_space' },
+{ x: 1230, y: 89.3, rotate: 179.8, class: 'open_space' },
+{ x: 1250, y: 89.3, rotate: 179.8, class: 'open_space' },
+{ x: 1270, y: 89.3, rotate: 179.8, class: 'open_space' },
+{ x: 1290, y: 89.3, rotate: 179.8, class: 'open_space' },
+{ x: 1310, y: 89.3, rotate: 179.8, class: 'open_space' },
+
+
+
 //пятый ряд
-{ x: 996.7, y: 115, rotate: 179.8, class: 'open_space' },
-{ x: 1024.2, y: 115, rotate: 179.8, class: 'open_space' },
-{ x: 1051.6, y: 115, rotate: 179.8, class: 'open_space' },
-{ x: 1142, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1170.7, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1200.6, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1311.8, y: 118.6, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1010, y: 115, rotate: 179.8, class: 'open_space' },
+{ x: 1035, y: 115, rotate: 179.8, class: 'open_space' },
+{ x: 1060, y: 115, rotate: 179.8, class: 'open_space' },
+{ x: 1170, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1190, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1210, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1230, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1250, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1270, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1290, y: 118.6, rotate: 179.8, class: 'open_space' },
+{ x: 1310, y: 118.6, rotate: 179.8, class: 'open_space' },
 //слева от квадрата
-{ x: 955.2, y: 142, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 142, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 160, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 177, rotate: 179.8, class: 'open_space' },
-{ x: 954, y: 197, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 177, rotate: 179.8, class: 'open_space' },
-{ x: 982.7, y: 197, rotate: 179.8, class: 'open_space' },
+{ x: 970, y: 142, rotate: 179.8, class: 'open_space' },
+{ x: 995, y: 142, rotate: 179.8, class: 'open_space' },
+{ x: 970, y: 160, rotate: 179.8, class: 'open_space' },
+{ x: 970, y: 177, rotate: 179.8, class: 'open_space' },
+{ x: 970, y: 197, rotate: 179.8, class: 'open_space' },
+{ x: 995, y: 177, rotate: 179.8, class: 'open_space' },
+{ x: 995, y: 197, rotate: 179.8, class: 'open_space' },
 //квадрат
 { x: 1109.7, y: 147.9, rotate: 179.8, class: 'open_space' },
 { x: 1082.2, y: 147.9, rotate: 179.8, class: 'open_space' },
@@ -74,18 +79,20 @@ const places = [
 { x: 1158, y: 188.8, rotate: 122.7, class: 'open_space' }, //188.8
 { x: 1148, y: 209, rotate: 122.7, class: 'open_space' },  //209
 //
-{ x: 1200.6, y: 147.9, rotate: 179.8, class: 'open_space' },
-{ x: 1227.5, y: 147.9, rotate: 179.8, class: 'open_space' },
-{ x: 1256.8, y: 147.9, rotate: 179.8, class: 'open_space' },
-{ x: 1284.3, y: 147.9, rotate: 179.8, class: 'open_space' },
-{ x: 1313, y: 147.9, rotate: 179.8, class: 'open_space' },
-{ x: 1341.1, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1210, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1230, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1250, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1270, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1290, y: 147.9, rotate: 179.8, class: 'open_space' },
+{ x: 1310, y: 147.9, rotate: 179.8, class: 'open_space' },
 //правое крыло закончено
 //правый нижний тоннель
 //места под нижней лестницей
 { x: 960, y: 690, rotate: -0.2, class: 'open_space' },
 { x: 980, y: 690, rotate: -0.2, class: 'open_space' },
 //места слева от нижней лесницы
+{ x: 927, y: 500, rotate: 89.8, class: 'open_space' },
+{ x: 927, y: 520, rotate: 89.8, class: 'open_space' },
 { x: 927, y: 540, rotate: 89.8, class: 'open_space' },
 { x: 927, y: 560, rotate: 89.8, class: 'open_space' },
 { x: 927, y: 580, rotate: 89.8, class: 'open_space' },
@@ -96,8 +103,6 @@ const places = [
 { x: 927, y: 680, rotate: 89.8, class: 'open_space' },
 { x: 927, y: 700, rotate: 89.8, class: 'open_space' },
 { x: 927, y: 720, rotate: 89.8, class: 'open_space' },
-{ x: 927, y: 740, rotate: 89.8, class: 'open_space' },
-{ x: 927, y: 760, rotate: 89.8, class: 'open_space' },
 //левый нижний тоннель
 //колонна мест слева(край)
 { x: 85, y: 502.7, rotate: 89.8, class: 'open_space' }, 
