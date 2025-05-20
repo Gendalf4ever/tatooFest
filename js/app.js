@@ -1,11 +1,12 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Инициализация элементов
-    const map = document.getElementById('map');
-    const bookingForm = document.getElementById('bookingForm');
-    const vkLinkInput = bookingForm.elements.link;
+// Основной модуль бронирования
+ //импорт vk.js
+import { sendBookingToVK } from './vk.js'; 
+const BookingApp = (() => {
+    // Элементы DOM
+    let map, bookingForm, vkLinkInput;
     let selectedPlaces = new Set();
 
-    // Основные функции
+    // Инициализация карты мест
     function initMap() {
         places.forEach((place, index) => {
             const placeEl = document.createElement('div');
@@ -17,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             placeEl.dataset.id = index;
             placeEl.title = `Место #${index+1} | Тип: ${place.class.replace('_', ' ')}`;
-
             placeEl.addEventListener('click', togglePlaceSelection);
             map.appendChild(placeEl);
         });
     }
 
+    // Выбор/отмена выбора места
     function togglePlaceSelection() {
         const placeId = this.dataset.id;
         
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateSelectedPlacesUI();
     }
 
+    // Обновление списка выбранных мест
     function updateSelectedPlacesUI() {
         const countElement = document.getElementById('selectedPlacesCount');
         const listElement = document.getElementById('selectedPlacesList');
@@ -57,54 +59,100 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-   function formatVKLink(input) {
-    let value = input.value.trim();
-    
-    if (!value) return;
-    
-    // Удаляем все, что не нужно
-    value = value.replace(/^https?:\/\//i, '')
-                 .replace(/^www\./i, '')
-                 .replace(/^@/, '')
-                 .replace(/\s+/g, '');
-    
-    // Добавляем базовую часть, если нужно
-    if (!value.startsWith('vk.com/')) {
-        value = 'vk.com/' + value;
+    // Форматирование ссылки VK
+    function formatVKLink(input) {
+        let value = input.value.trim();
+        if (!value) return;
+        
+        value = value.replace(/^https?:\/\//i, '')
+                     .replace(/^www\./i, '')
+                     .replace(/^@/, '')
+                     .replace(/\s+/g, '')
+                     .replace(/(\/+)/g, '/');
+        
+        input.value = value.toLowerCase();
     }
-    
-    // Упрощаем слэши
-    value = value.replace(/(\/+)/g, '/');
-    
-    input.value = value.toLowerCase(); // приводим к нижнему регистру
-}
 
-   async function handleFormSubmit(e) {
-    e.preventDefault();
-    
-    // Валидация
-    const name = bookingForm.elements.name.value.trim();
-    let vkLink = vkLinkInput.value.trim();
-    const vkRegex = /^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_.\-]+$/i;
-    
-    // Форматируем ссылку перед проверкой
-    formatVKLink(vkLinkInput);
-    vkLink = vkLinkInput.value.trim();
-    
-    if (!name) {
-        showAlert('Пожалуйста, введите ваше имя!');
-        return;
+    // Обработка отправки формы
+    async function handleFormSubmit(e) {
+        e.preventDefault();
+        
+        // Валидация данных
+        const name = bookingForm.elements.name.value.trim();
+        const vkLink = vkLinkInput.value.trim();
+        const vkRegex = /^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_.\-]+$/i;
+        
+        if (!validateForm(name, vkLink, vkRegex)) return;
+        
+        // Подготовка данных
+        const formData = prepareFormData(name, vkLink);
+        
+        try {
+            // Отправка данных
+            await sendBookingToVK(formData);
+            processSuccessfulBooking(formData);
+        } catch (error) {
+            handleBookingError(error);
+        }
     }
-    
-    if (!vkRegex.test(vkLink)) {
-        showAlert('Пожалуйста, введите корректную ссылку VK!\nПример: vk.com/username\nИли: https://vk.com/id12345');
-        vkLinkInput.focus();
-        return;
-    }
-    
-    // ... остальной код обработки формы
-}
 
+    // Валидация формы
+    function validateForm(name, vkLink, vkRegex) {
+        if (!name) {
+            showAlert('Пожалуйста, введите ваше имя!');
+            return false;
+        }
+        
+        if (!vkRegex.test(vkLink)) {
+            showAlert('Пожалуйста, введите корректную ссылку VK!\nПример: vk.com/username');
+            vkLinkInput.focus();
+            return false;
+        }
+        
+        if (selectedPlaces.size === 0) {
+            showAlert('Пожалуйста, выберите хотя бы одно место!');
+            return false;
+        }
+        
+        return true;
+    }
+
+    // Подготовка данных формы
+    function prepareFormData(name, vkLink) {
+        return {
+            name,
+            link: vkLink,
+            date: document.querySelector('input[name="date"]:checked').value,
+            places: Array.from(selectedPlaces).map(id => parseInt(id)+1),
+            placesIds: Array.from(selectedPlaces),
+            timestamp: new Date().toISOString()
+        };
+    }
+
+    // Обработка успешного бронирования
+    function processSuccessfulBooking(formData) {
+        selectedPlaces.forEach(placeId => {
+            const placeEl = document.querySelector(`.place[data-id="${placeId}"]`);
+            if (placeEl) {
+                placeEl.classList.remove('selected');
+                placeEl.classList.add('booked');
+            }
+        });
+
+        selectedPlaces.clear();
+        updateSelectedPlacesUI();
+        bookingForm.reset();
+        showAlert(`Успешно забронировано ${formData.places.length} мест!`);
+        saveBookingToHistory(formData);
+    }
+
+    // Обработка ошибок
+    function handleBookingError(error) {
+        console.error('Ошибка бронирования:', error);
+        showAlert('Ошибка при отправке брони. Пожалуйста, попробуйте ещё раз.');
+    }
+
+    // Сохранение в историю
     function saveBookingToHistory(booking) {
         try {
             const history = JSON.parse(localStorage.getItem('bookingHistory') || '[]');
@@ -115,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // Показ уведомлений
     function showAlert(message) {
         const alertEl = document.createElement('div');
         alertEl.className = 'custom-alert';
@@ -127,35 +176,44 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
 
+    // Масштабирование карты
     function scaleMap() {
         const mapSection = document.querySelector('.map-section');
         if (mapSection) {
             const scale = Math.min(
-                mapSection.clientWidth / 1364.7,  //!
-                mapSection.clientHeight / 784.4,  //!
-                1 // Максимальный масштаб 100%
+                mapSection.clientWidth / 1364.7,
+                mapSection.clientHeight / 784.4,
+                1
             );
             map.style.transform = `scale(${scale})`;
         }
     }
 
-    // Инициализация
+    // Инициализация приложения
     function init() {
+        map = document.getElementById('map');
+        bookingForm = document.getElementById('bookingForm');
+        vkLinkInput = bookingForm.elements.link;
+
         initMap();
         scaleMap();
         updateSelectedPlacesUI();
         
-        // Обработчики событий
         bookingForm.addEventListener('submit', handleFormSubmit);
         vkLinkInput.addEventListener('blur', () => formatVKLink(vkLinkInput));
         window.addEventListener('resize', scaleMap);
     }
 
-    init();
-});
+    // Публичные методы
+    return {
+        init
+    };
+})();
 
+// Запуск приложения после загрузки DOM
+document.addEventListener('DOMContentLoaded', () => BookingApp.init());
 
-
+// Вспомогательная функция для форматирования даты
 function getDateText(date) {
     const dates = {
         '24.05': '24 мая',
