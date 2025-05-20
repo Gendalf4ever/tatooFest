@@ -57,83 +57,53 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function formatVKLink(input) {
-        let value = input.value.trim();
-        
-        if (!value) return;
-        
-        if (!value.includes('vk.com/') && !value.startsWith('@')) {
-            value = 'vk.com/' + value;
-        } else if (value.startsWith('@')) {
-            value = 'vk.com/' + value.substring(1);
-        }
-        
-        value = value.replace(/(\/+)/g, '/');
-        input.value = value;
+   function formatVKLink(input) {
+    let value = input.value.trim();
+    
+    if (!value) return;
+    
+    // Удаляем все, что не нужно
+    value = value.replace(/^https?:\/\//i, '')
+                 .replace(/^www\./i, '')
+                 .replace(/^@/, '')
+                 .replace(/\s+/g, '');
+    
+    // Добавляем базовую часть, если нужно
+    if (!value.startsWith('vk.com/')) {
+        value = 'vk.com/' + value;
     }
+    
+    // Упрощаем слэши
+    value = value.replace(/(\/+)/g, '/');
+    
+    input.value = value.toLowerCase(); // приводим к нижнему регистру
+}
 
-    async function handleFormSubmit(e) {
-        e.preventDefault();
-        
-        // Валидация
-        const name = bookingForm.elements.name.value.trim();
-        const vkLink = vkLinkInput.value.trim();
-        const vkRegex = /^(https?:\/\/)?(www\.)?vk\.com\/([a-zA-Z0-9_\.-]+)/;
-        
-        if (!name) {
-            showAlert('Пожалуйста, введите ваше имя!');
-            return;
-        }
-        
-        if (!vkRegex.test(vkLink)) {
-            showAlert('Пожалуйста, введите корректную ссылку VK!\nПример: vk.com/username');
-            vkLinkInput.focus();
-            return;
-        }
-        
-        if (selectedPlaces.size === 0) {
-            showAlert('Пожалуйста, выберите хотя бы одно место!');
-            return;
-        }
-        
-        // Подготовка данных
-        const formData = {
-            name,
-            link: vkLink,
-            date: document.querySelector('input[name="date"]:checked').value,
-            places: Array.from(selectedPlaces).map(id => parseInt(id)+1),
-            placesIds: Array.from(selectedPlaces),
-            timestamp: new Date().toISOString()
-        };
-
-        try {
-            // Отправка в VK
-            await sendBookingToVK(formData);
-            
-            // Обновление UI
-            selectedPlaces.forEach(placeId => {
-                const placeEl = document.querySelector(`.place[data-id="${placeId}"]`);
-                if (placeEl) {
-                    placeEl.classList.remove('selected');
-                    placeEl.classList.add('booked');
-                }
-            });
-
-            // Сброс формы
-            selectedPlaces.clear();
-            updateSelectedPlacesUI();
-            bookingForm.reset();
-            
-            showAlert(`Успешно забронировано ${formData.places.length} мест!`);
-            
-            // Сохранение в localStorage
-            saveBookingToHistory(formData);
-            
-        } catch (error) {
-            console.error('Ошибка бронирования:', error);
-            showAlert('Ошибка при отправке брони. Пожалуйста, попробуйте ещё раз.');
-        }
+   async function handleFormSubmit(e) {
+    e.preventDefault();
+    
+    // Валидация
+    const name = bookingForm.elements.name.value.trim();
+    let vkLink = vkLinkInput.value.trim();
+    const vkRegex = /^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_.\-]+$/i;
+    
+    // Форматируем ссылку перед проверкой
+    formatVKLink(vkLinkInput);
+    vkLink = vkLinkInput.value.trim();
+    
+    if (!name) {
+        showAlert('Пожалуйста, введите ваше имя!');
+        return;
     }
+    
+    if (!vkRegex.test(vkLink)) {
+        showAlert('Пожалуйста, введите корректную ссылку VK!\nПример: vk.com/username\nИли: https://vk.com/id12345');
+        vkLinkInput.focus();
+        return;
+    }
+    
+    // ... остальной код обработки формы
+}
 
     function saveBookingToHistory(booking) {
         try {
