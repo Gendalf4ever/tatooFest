@@ -15,7 +15,7 @@ export function sendBookingToVK(bookingData) {
                                `🕒 Время брони: ${new Date().toLocaleString()}`;
 
             // Формируем ссылку для отправки сообщения
-            const groupId = extractGroupId('tattoo_fest_2025'); // Или можно из URL https://vk.com/tattoo_fest_2025
+            const groupId = extractGroupId('club230557513'); // Или можно из URL https://vk.com/tattoo_fest_2025
             const vkUrl = createVkMessageUrl(groupId, messageText);
 
             // Открываем окно отправки сообщения
@@ -99,5 +99,5 @@ export function sendViaMobile(bookingData) {
                        `📅 Дата: ${getDateText(bookingData.date)}%0A` +
                        `📍 Места: ${bookingData.places.join(', ')}`;
     
-    window.location.href = `https://vk.com/write-${extractGroupId('tattoo_fest_2025')}?text=${messageText}`;
+    window.location.href = `https://vk.com/write-${extractGroupId('club230557513')}?text=${messageText}`;
 }

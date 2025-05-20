@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preload" href="src/design.png" as="image">
     <style>
-        /* Дополнительные стили для улучшенной версии */
         .form-group {
             margin-bottom: 15px;
         }
@@ -60,7 +59,6 @@
         <h1>БРОНИРУЙ ИДЕАЛЬНОЕ МЕСТО ДЛЯ СЕБЯ!</h1>
 
         <div class="content-wrapper">
-            <!-- Увеличенная секция карты -->
             <div class="map-section">
                 <div class="map-container" id="map">
                     <svg class="map-svg" viewBox="0 0 1600 800" preserveAspectRatio="xMidYMid meet">
@@ -122,7 +120,7 @@
                             <input type="text" 
                                    name="link" 
                                    placeholder="ССЫЛКА НА СТРАНИЦУ VK" 
-                                   pattern="^(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
+                                   pattern="(https?:\/\/)?(www\.)?vk\.com\/[a-zA-Z0-9_\.-]+" 
                                    title="Пример: vk.com/username или https://vk.com/id12345"
                                    required>
                             <small class="hint">Формат: vk.com/username или https://vk.com/id12345</small>
@@ -145,5 +143,6 @@
     <!-- Подключаем скрипты -->
     <script src="js/places.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/vk.js" type="module"></script>
 </body>
 </html>
