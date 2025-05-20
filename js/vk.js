@@ -1,103 +1,106 @@
+/**
+ * Отправка сообщения в группу VK
+ */
 export function sendBookingToVK(bookingData) {
     return new Promise((resolve, reject) => {
         try {
-            // Проверяем обязательные данные
-            if (!bookingData || !bookingData.name || !bookingData.link || !bookingData.places || !bookingData.date) {
-                throw new Error('Неполные данные для бронирования');
+            // Проверка данных
+            if (!bookingData?.name || !bookingData?.link || !bookingData?.places) {
+                throw new Error('Заполните все обязательные поля');
             }
 
-            // Формируем текст сообщения
-            const messageText = `Новая бронь на Tattoo Fest!\n\n` +
-                               `👤 Имя: ${bookingData.name}\n` +
-                               `🔗 Профиль: ${normalizeVkLink(bookingData.link)}\n` +
-                               `📅 Дата: ${getDateText(bookingData.date)}\n` +
-                               `📍 Места: ${bookingData.places.join(', ')}\n` +
-                               `🕒 Время брони: ${new Date().toLocaleString()}`;
-
-            // Формируем ссылку для отправки сообщения
-            const groupId = extractGroupId('testgroupbebebe'); // Или можно из URL https://vk.com/tattoo_fest_2025
-            const vkUrl = createVkMessageUrl(groupId, messageText);
-
-            // Открываем окно отправки сообщения
-            openVkMessageWindow(vkUrl, resolve, reject);
+            // Формирование сообщения
+            const message = formatBookingMessage(bookingData);
             
+            // Создание ссылки для группы tattoo_fest_2025
+            const vkUrl = `https://vk.com/write/tattoo_fest_2025?ref=tattoo_booking&text=${encodeURIComponent(message)}`;
+            
+            // Открытие чата
+            openChatWindow(vkUrl, resolve, reject);
+
         } catch (error) {
-            console.error('Ошибка при подготовке сообщения:', error);
+            console.error('Ошибка:', error);
             reject(error);
         }
     });
 }
 
-// Вспомогательные функции:
-
-function normalizeVkLink(link) {
-    // Приводим ссылку к единому формату
-    return link.startsWith('http') ? link : `https://${link}`;
+// Вспомогательные функции
+function formatBookingMessage(data) {
+    return [
+        '🎨 Новая бронь на Tattoo Fest 2025',
+        `👤 Клиент: ${data.name}`,
+        `📱 Профиль: ${formatProfileLink(data.link)}`,
+        `📅 Дата: ${formatDate(data.date)}`,
+        `📍 Места: ${data.places.join(', ')}`,
+        `⏱️ Время брони: ${new Date().toLocaleString()}`
+    ].join('\n');
 }
 
-function getDateText(dateValue) {
+function formatProfileLink(link) {
+    // Очистка и нормализация ссылки VK
+    return link.trim()
+        .replace(/^(https?:\/\/)?(www\.)?/i, '')
+        .replace(/^@/, '')
+        .replace(/\s+/g, '');
+}
+
+function formatDate(date) {
     const dates = {
-        '24.05': '24 мая',
-        '25.05': '25 мая',
-        'both': '24 и 25 мая'
+        '24.05': '24 мая 2025',
+        '25.05': '25 мая 2025',
+        'both': '24-25 мая 2025'
     };
-    return dates[dateValue] || dateValue;
+    return dates[date] || date;
 }
 
-function extractGroupId(groupUrl) {
-    // Извлекаем короткое имя группы из URL
-    const match = groupUrl.match(/(?:https?:\/\/)?(?:www\.)?vk\.com\/([a-zA-Z0-9_\-]+)/);
-    return match ? match[1] : groupUrl;
-}
-
-function createVkMessageUrl(groupId, message) {
-    // Создаем URL для отправки сообщения группе
-    const encodedMessage = encodeURIComponent(message);
-    return `https://vk.com/write-${groupId}?text=${encodedMessage}`;
-}
-
-function openVkMessageWindow(url, resolve, reject) {
-    // Пытаемся открыть окно
-    const width = 600;
-    const height = 700;
+function openChatWindow(url, resolve, reject) {
+    const width = 700;
+    const height = 800;
     const left = (screen.width - width) / 2;
     const top = (screen.height - height) / 2;
     
-    const windowFeatures = `width=${width},height=${height},left=${left},top=${top},resizable=yes,scrollbars=yes`;
+    const windowFeatures = `width=${width},height=${height},left=${left},top=${top},scrollbars=yes`;
     
-    const vkWindow = window.open(url, 'vk_message', windowFeatures);
+    const vkWindow = window.open(url, 'vk_tattoo_fest', windowFeatures);
     
-    if (!vkWindow) {
-        // Если окно заблокировано, предлагаем альтернативу
-        const shouldProceed = confirm(
-            'Пожалуйста, разрешите всплывающие окна для этого сайта.\n' +
-            'Или нажмите OK, чтобы перейти к отправке вручную.'
-        );
-        
-        if (shouldProceed) {
-            window.location.href = url;
-            resolve();
-        } else {
-            reject(new Error('Отправка отменена пользователем'));
-        }
+    if (vkWindow) {
+        trackWindowClose(vkWindow, resolve);
     } else {
-        // Проверяем, закрыл ли пользователь окно
-        const checkWindow = setInterval(() => {
-            if (vkWindow.closed) {
-                clearInterval(checkWindow);
-                resolve();
-            }
-        }, 500);
+        handleBlockedPopup(url, resolve, reject);
     }
 }
 
-// Альтернативный метод для мобильных устройств
-export function sendViaMobile(bookingData) {
-    const messageText = `Новая бронь на Tattoo Fest!%0A%0A` +
-                       `👤 Имя: ${bookingData.name}%0A` +
-                       `🔗 Профиль: ${normalizeVkLink(bookingData.link)}%0A` +
-                       `📅 Дата: ${getDateText(bookingData.date)}%0A` +
-                       `📍 Места: ${bookingData.places.join(', ')}`;
-    
-    window.location.href = `https://vk.com/write-${extractGroupId('testgroupbebebe')}?text=${messageText}`;
+function trackWindowClose(window, callback) {
+    const interval = setInterval(() => {
+        if (window.closed) {
+            clearInterval(interval);
+            callback();
+        }
+    }, 500);
+}
+
+function handleBlockedPopup(url, resolve, reject) {
+    if (confirm('Разрешите всплывающие окна или нажмите OK для перехода вручную')) {
+        window.location.href = url;
+        resolve();
+    } else {
+        reject(new Error('Отправка отменена пользователем'));
+    }
+}
+
+/**
+ * Мобильная версия отправки
+ */
+export function sendMobile(bookingData) {
+    const message = [
+        '🎨 Бронь Tattoo Fest 2025',
+        `👤 ${bookingData.name}`,
+        `📱 ${formatProfileLink(bookingData.link)}`,
+        `📅 ${formatDate(bookingData.date)}`,
+        `📍 ${bookingData.places.join(',')}`,
+        `⏱️ ${new Date().toLocaleTimeString()}`
+    ].join('%0A');
+
+    window.location.href = `https://vk.com/write/tattoo_fest_2025?text=${message}`;
 }
