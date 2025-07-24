@@ -1,3 +1,48 @@
+ .form-group {
+            margin-bottom: 15px;
+        }
+        
+        fieldset.options {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        
+        fieldset.options legend {
+            padding: 0 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 1200px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+            
+            .right-aligned {
+                width: 100%;
+                margin: 30px 0 0 0;
+            }
+            
+            .map-section {
+                height: 600px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .map-section {
+                height: 450px;
+            }
+            
+            .status-block, .booking-form {
+                padding: 20px;
+            }
+        }
 /* Основные стили */
 body {
     font-family: Arial, sans-serif;
@@ -53,8 +98,8 @@ h1 {
 
 .gray-blue { background-color: #6b8cae; }
 .green { background-color: #5cb85c; }
-.pink { background-color: #ff9ff3; }
-.peach { background-color: #ffbe76; }
+.red{ background-color: #c2130d; }
+.violet { background-color: #880a96; }
 .gray { background-color: #95a5a6; }
 
 .status-text p {
@@ -95,7 +140,7 @@ input[type="text"] {
 
 button {
     background: #ffffff;
-    color: rgb(255, 0, 0);
+    color: rgb(19, 100, 3);
     border: none;
     padding: 16px;
     width: 100%;
