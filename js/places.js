@@ -1,5 +1,5 @@
 const places = [
-  // ========== Маркет) ==========
+  // ========== Маркет ==========
   { x: 345.4, y: 440, rotate: 0, class: 'М1' },
   { x: 370.2, y: 440, rotate: 0, class: 'М2' },
   { x: 345.4, y: 460, rotate: 0, class: 'М3' },
@@ -31,55 +31,57 @@ const places = [
   { x: 560, y: 232.6, rotate: -90, class: 'O10' },
   { x: 520, y: 262.6, rotate: -90, class: 'O11' },
   { x: 560, y: 262.6, rotate: -90, class: 'O12' },
-  { x: 580, y: 262.6, rotate: -90, class: 'O13' },
-  { x: 590, y: 232.6, rotate: -90, class: 'O14' },
+  { x: 580, y: 232.6, rotate: -90, class: 'O13' },
+  { x: 590, y: 262.6, rotate: -90, class: 'O14' },
 
-      // ========== Второй ряд ==========
-   /*
- 
-  { x: 329.2, y: 127.6, rotate: -90, class: 'O15' },
-  { x: 814.2, y: 166.6, rotate: -90, class: 'O16' },
-  { x: 859.2, y: 166.6, rotate: -90, class: 'O17' },
-  { x: 772.2, y: 166.6, rotate: -90, class: 'O18' },
-  { x: 730.2, y: 166.6, rotate: -90, class: 'O19' },
-  { x: 686.2, y: 166.6, rotate: -90, class: 'O20' },
+      // ========== Третий ряд ==========
+  { x: 680, y: 232, rotate: -90, class: 'O15' },
+  { x: 680, y: 262, rotate: -90, class: 'O16' },
+  { x: 700, y: 232, rotate: -90, class: 'O17' },
+  { x: 700, y: 262, rotate: -90, class: 'O18' },
+  { x: 720, y: 232, rotate: -90, class: 'O19' },
+  { x: 720, y: 262, rotate: -90, class: 'O20' },
+  { x: 740, y: 232, rotate: -90, class: 'O21' },
+  { x: 740, y: 262, rotate: -90, class: 'O22' },
+  { x: 760, y: 262, rotate: -90, class: 'O23' },
+    
+        // ========== Четвертый ряд ==========
+  { x: 320, y: 340, rotate: -90, class: 'O24' },
+  { x: 320, y: 380, rotate: -90, class: 'O25' },
+  { x: 340, y: 340, rotate: -90, class: 'O26' },
+  { x: 340, y: 380, rotate: -90, class: 'O27' },
+  { x: 360, y: 340, rotate: -90, class: 'O28' },
+  { x: 360, y: 380, rotate: -90, class: 'O29' },
+  { x: 380, y: 340, rotate: -90, class: 'O30' },
+  { x: 380, y: 380, rotate: -90, class: 'O31' },
   
-  { x: 814.2, y: 127.6, rotate: -90, class: 'O21' },
-  { x: 772.2, y: 127.6, rotate: -90, class: 'O22' },
-  { x: 730.2, y: 127.6, rotate: -90, class: 'O23' },
-  { x: 686.2, y: 127.6, rotate: -90, class: 'O24' },
-  { x: 814.2, y: 271.6, rotate: -90, class: 'O25' },
-  { x: 772.2, y: 271.6, rotate: -90, class: 'O26' },
-  { x: 730.2, y: 271.6, rotate: -90, class: 'O27' },
-  { x: 686.2, y: 271.6, rotate: -90, class: 'O28' },
-  { x: 814.2, y: 232.6, rotate: -90, class: 'O29' },
-  { x: 772.2, y: 232.6, rotate: -90, class: 'O30' },
+    // ========== Пятый ряд ==========
+  { x: 420, y: 340, rotate: -90, class: 'O32' },
+  { x: 420, y: 380, rotate: -90, class: 'O33' },
+  { x: 440, y: 340, rotate: -90, class: 'O34' },
+  { x: 440, y: 380, rotate: -90, class: 'O35' },
+  { x: 460, y: 340, rotate: -90, class: 'O36' },
+  { x: 460, y: 380, rotate: -90, class: 'O37' },
   
-  { x: 901.2, y: 271.6, rotate: -90, class: 'O31' },
-  { x: 859.2, y: 271.6, rotate: -90, class: 'O32' },
-  { x: 901.2, y: 232.6, rotate: -90, class: 'O33' },
-  { x: 859.2, y: 232.6, rotate: -90, class: 'O34' },
-  { x: 730.2, y: 232.6, rotate: -90, class: 'O35' },
-  { x: 686.2, y: 232.6, rotate: -90, class: 'O36' },
-  { x: 607.2, y: 166.6, rotate: -90, class: 'O37' },
-  { x: 564.2, y: 166.6, rotate: -90, class: 'O38' },
-  { x: 520.2, y: 166.6, rotate: -90, class: 'O39' },
-  { x: 607.2, y: 127.6, rotate: -90, class: 'O40' },
-  
-  { x: 564.2, y: 127.6, rotate: -90, class: 'O41' },
-  { x: 520.2, y: 127.6, rotate: -90, class: 'O42' },
-  { x: 607.2, y: 271.6, rotate: -90, class: 'O43' },
-  { x: 564.2, y: 271.6, rotate: -90, class: 'O44' },
-  { x: 520.2, y: 271.6, rotate: -90, class: 'O45' },
-  { x: 607.2, y: 232.6, rotate: -90, class: 'O46' },
-  { x: 564.2, y: 232.6, rotate: -90, class: 'O47' },
-  { x: 520.2, y: 232.6, rotate: -90, class: 'O48' },
-    */
+     // ========== Шестой ряд ==========
+  { x: 680, y: 340, rotate: -90, class: 'O38' },
+  { x: 680, y: 380, rotate: -90, class: 'O39' },
+  { x: 700, y: 340, rotate: -90, class: 'O40' },
+  { x: 700, y: 380, rotate: -90, class: 'O41' },
+  { x: 720, y: 340, rotate: -90, class: 'O42' },
+  { x: 720, y: 380, rotate: -90, class: 'O43' },
+  { x: 740, y: 340, rotate: -90, class: 'O44' },
+  { x: 740, y: 380, rotate: -90, class: 'O45' },
+  { x: 760, y: 340, rotate: -90, class: 'O46' },
+  { x: 760, y: 380, rotate: -90, class: 'O47' },
+  { x: 780, y: 340, rotate: -90, class: 'O48' },
+    { x: 780.2, y: 380, rotate: -90, class: 'O49' },
+
   // ========== Боксы ==========
   //======== Первый ряд =========
   { x: 508.4, y: 440, rotate: 0, class: 'Б1' },
   { x: 533.2, y: 440, rotate: 0, class: 'Б2' },
-{ x: 508.4, y: 460, rotate: 0, class: 'Б3' },
+  { x: 508.4, y: 460, rotate: 0, class: 'Б3' },
   { x: 533.2, y: 460, rotate: 0, class: 'Б4' },
   { x: 508.4, y: 480, rotate: 0, class: 'Б5' },
   { x: 533.2, y: 480, rotate: 0, class: 'Б6' },
