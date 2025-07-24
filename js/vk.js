@@ -54,8 +54,8 @@ function normalizeLink(link) {
  */
 function formatDate(date) {
     const dates = {
-        '24.05': '24 мая',
-        '25.05': '25 мая',
+        '30.08': '30 августа',
+        '31.08': '31 августа',
         'both': 'оба дня'
     };
     return dates[date] || date;

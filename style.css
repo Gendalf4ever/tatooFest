@@ -183,7 +183,7 @@ button:hover {
     transform-origin: top left;
     width: 1364.7px;  /*1364.7px*/
     height: 784.4px; /*784.4px*/
-    background-image: url('./src/design.png');
+    background-image: url('./src/ufa.jpg');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: 0px 0px; 
@@ -209,6 +209,10 @@ button:hover {
 /* Стили для box-seat */
 [class*="Б"] {
     background: #242c78;
+    border-color: #000;
+}
+[class*="М"] {
+    background: grey;
     border-color: #000;
 }
 .place.box_seat {

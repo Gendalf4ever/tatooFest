@@ -1,6 +1,4 @@
 // Основной модуль бронирования
- //импорт vk.js
-import { sendBookingToVK } from './vk.js'; 
 const BookingApp = (() => {
     // Элементы DOM
     let map, bookingForm, vkLinkInput;
@@ -216,9 +214,9 @@ document.addEventListener('DOMContentLoaded', () => BookingApp.init());
 // Вспомогательная функция для форматирования даты
 function getDateText(date) {
     const dates = {
-        '24.05': '24 мая',
-        '25.05': '25 мая', 
-        'both': '24 и 25 мая'
+        '30.08': '30 августа',
+        '31.08': '31 августа', 
+        'both': '30 и 31 августа'
     };
     return dates[date] || date;
 }
