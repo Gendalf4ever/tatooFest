@@ -192,8 +192,8 @@ button:hover {
 /* Стили мест */
 .place {
     position: absolute;
-    width: 20px;
-    height: 16px;
+    width: 30px;
+    height: 30px;
     background: #006837;
     border: 1px solid #282929;
     opacity: 0.6;
