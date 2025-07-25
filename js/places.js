@@ -16,6 +16,7 @@ const places = [
   { x: 345, y: 660, rotate: 90, class: 'М14' },
 
   // ========== Open Space ==========
+
     // ========== Первый ряд ==========
       { x: 330, y: 232.6, rotate: -90, class: 'O1' },
       { x: 370, y: 232.6, rotate: -90, class: 'O2' },
@@ -76,6 +77,7 @@ const places = [
   { x: 880, y: 380, rotate: -90, class: 'O49' },
   
   // ========== Боксы ==========
+
   //======== Первый ряд =========
   { x: 500, y: 440, rotate: 0, class: 'Б1' },
   { x: 530, y: 440, rotate: 0, class: 'Б2' },
@@ -89,6 +91,7 @@ const places = [
   { x: 530, y: 560, rotate: 0, class: 'Б10' },
   { x: 500, y: 590, rotate: 0, class: 'Б11' },
   { x: 530, y: 590, rotate: 0, class: 'Б12' },  
+
    //======== Второй ряд ==========
   { x: 590, y: 440, rotate: 0, class: 'Б13' },
   { x: 620, y: 440, rotate: 0, class: 'Б14' },
@@ -102,6 +105,7 @@ const places = [
   { x: 620, y: 560, rotate: 0, class: 'Б22' },
   { x: 590, y: 590, rotate: 0, class: 'Б23' },
   { x: 620, y: 590, rotate: 0, class: 'Б24' },
+
    //======== Третий ряд ==========
   { x: 670, y: 440, rotate: 0, class: 'Б25' },
   { x: 700, y: 440, rotate: 0, class: 'Б26' },
@@ -115,6 +119,7 @@ const places = [
   { x: 700, y: 560, rotate: 0, class: 'Б34' },
   { x: 670, y: 590, rotate: 0, class: 'Б35' },
   { x: 700, y: 590, rotate: 0, class: 'Б36' },
+  
       //======== Четветрый ряд ==========
   { x: 760, y: 440, rotate: 0, class: 'Б37' },
   { x: 790, y: 440, rotate: 0, class: 'Б38' },

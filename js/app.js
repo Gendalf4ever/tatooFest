@@ -15,7 +15,7 @@ const BookingApp = (() => {
                 transform: rotate(${place.rotate}deg);
             `;
             placeEl.dataset.id = index;
-            placeEl.title = `Место #${index+1} | Тип: ${place.class.replace('_', ' ')}`;
+            placeEl.title = `Место #${index+1} | Тип: ${place.class.replace('_', ' ')} `;
             placeEl.addEventListener('click', togglePlaceSelection);
             map.appendChild(placeEl);
         });
