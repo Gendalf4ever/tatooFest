@@ -157,7 +157,5 @@ const places = [
   { x: 1100, y: 560, rotate: 0, class: 'Б58' },
   { x: 1070, y: 590, rotate: 0, class: 'Б59' },
   { x: 1100, y: 590, rotate: 0, class: 'Б60' },
-/*  
 
-  */
 ];
