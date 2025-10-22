@@ -10,9 +10,9 @@ const BookingApp = (() => {
             const placeEl = document.createElement('div');
             placeEl.className = `place ${place.class}`;
             placeEl.style.cssText = `
-                left: ${place.x}px;
-                top: ${place.y}px;
-                transform: rotate(${place.rotate}deg);
+                left: ${place.x}%;
+                top: ${place.y}%;
+                transform: translate(-50%, -50%) rotate(${place.rotate}deg);
             `;
             placeEl.dataset.id = index;
             placeEl.title = `Место #${index+1} | Тип: ${place.class.replace('_', ' ')} `;
@@ -86,6 +86,13 @@ const BookingApp = (() => {
         const formData = prepareFormData(name, vkLink);
         
         try {
+            console.log('Отправляем данные в VK:', formData); // Для отладки
+            
+            // Проверяем, что все данные на месте
+            if (!formData.name || !formData.link || !formData.places.length) {
+                throw new Error('Не все данные заполнены корректно');
+            }
+            
             // Отправка данных
             await sendBookingToVK(formData);
             processSuccessfulBooking(formData);
@@ -117,11 +124,20 @@ const BookingApp = (() => {
 
     // Подготовка данных формы
     function prepareFormData(name, vkLink) {
+        const selectedDate = document.querySelector('input[name="date"]:checked').value;
+        const placesArray = Array.from(selectedPlaces).map(id => parseInt(id)+1);
+        
+        console.log('Подготовка данных формы:'); // Для отладки
+        console.log('- Имя:', name);
+        console.log('- VK ссылка:', vkLink);
+        console.log('- Дата:', selectedDate);
+        console.log('- Выбранные места:', placesArray);
+        
         return {
-            name,
-            link: vkLink,
-            date: document.querySelector('input[name="date"]:checked').value,
-            places: Array.from(selectedPlaces).map(id => parseInt(id)+1),
+            name: name.trim(),
+            link: vkLink.trim(),
+            date: selectedDate,
+            places: placesArray,
             placesIds: Array.from(selectedPlaces),
             timestamp: new Date().toISOString()
         };
@@ -211,12 +227,26 @@ const BookingApp = (() => {
 // Запуск приложения после загрузки DOM
 document.addEventListener('DOMContentLoaded', () => BookingApp.init());
 
+// Функция для тестирования отправки сообщения в VK
+function testVKMessage() {
+    const testData = {
+        name: 'Тест Тестович',
+        link: 'test_user',
+        date: '29.11',
+        places: [1, 5, 10],
+        timestamp: new Date().toISOString()
+    };
+    
+    console.log('Тестируем отправку в VK с данными:', testData);
+    sendBookingToVK(testData);
+}
+
 // Вспомогательная функция для форматирования даты
 function getDateText(date) {
     const dates = {
-        '30.08': '30 августа',
-        '31.08': '31 августа', 
-        'both': '30 и 31 августа'
+        '29.11': '29 ноября',
+        '30.11': '30 ноября', 
+        'both': '29 и 30 ноября'
     };
     return dates[date] || date;
 }

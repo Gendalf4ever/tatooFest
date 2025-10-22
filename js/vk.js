@@ -1,32 +1,51 @@
 /**
  * Отправка сообщения в группу (финальная версия)
  */
-export function sendBookingToVK(bookingData) {
+function sendBookingToVK(bookingData) {
     return new Promise((resolve, reject) => {
         try {
+            console.log('Отправляемые данные:', bookingData); // Для отладки
+            
+            // Формируем сообщение с данными
             const message = [
                 '🎨 Новая бронь на Tattoo Fest 2025',
-                `👤 ${bookingData.name.trim()}`,
-                `🔗 ${normalizeLink(bookingData.link)}`,
-                `📅 ${formatDate(bookingData.date)}`,
-                `📍 Места: ${bookingData.places.join(', ')}`,
-                `⏱ ${new Date().toLocaleTimeString()}`
+                '',
+                `👤 Имя: ${bookingData.name.trim()}`,
+                `🔗 VK: https://vk.com/${normalizeLink(bookingData.link)}`,
+                `📅 Дата: ${formatDate(bookingData.date)}`,
+                `📍 Забронированные места: #${bookingData.places.join(', #')}`,
+                '',
+                `⏱ Время брони: ${new Date().toLocaleString('ru-RU')}`
             ].join('\n');
+
+            console.log('Сформированное сообщение:', message); // Для отладки
 
             const groupId = -230557513; // ID вашей группы (с минусом)
 
+            // Создаем URL с предзаполненным текстом
             const vkUrl = `https://vk.com/write${groupId}?text=${encodeURIComponent(message)}`;
             
-            const popup = window.open(vkUrl, '_blank', 'width=700,height=800');
+            console.log('URL для VK:', vkUrl); // Для отладки
+            
+            // Открываем окно VK с предзаполненным сообщением
+            const popup = window.open(vkUrl, '_blank', 'width=700,height=800,scrollbars=yes,resizable=yes');
 
             if (popup) {
+                // Ждем закрытия окна
                 const timer = setInterval(() => {
                     if (popup.closed) {
                         clearInterval(timer);
                         resolve();
                     }
                 }, 500);
+                
+                // Таймаут на случай если окно не закроется
+                setTimeout(() => {
+                    clearInterval(timer);
+                    resolve();
+                }, 300000); // 5 минут
             } else {
+                // Если popup заблокирован, переходим по ссылке
                 window.location.href = vkUrl;
                 resolve();
             }
@@ -54,8 +73,8 @@ function normalizeLink(link) {
  */
 function formatDate(date) {
     const dates = {
-        '30.08': '30 августа',
-        '31.08': '31 августа',
+        '29.11': '29 ноября',
+        '30.11': '30 ноября',
         'both': 'оба дня'
     };
     return dates[date] || date;
